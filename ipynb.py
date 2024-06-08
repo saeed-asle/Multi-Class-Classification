@@ -1,29 +1,3 @@
-"""
-Saeed Asle 
-ID:315957399
-Im alone
-notice that i didnt use any library like sklearn or
-X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.33, random_state=42)
-i wrote everthing from zero because i did study this before(self learning)
-####    in the end of the code i wrote the conclusions  ###
-"""
-"""
-The code you provided seems to implement a logistic regression model with one-vs-all classification for multi-class classification. Here's a breakdown of the code:
-The code defines the sigmoid function, which applies the sigmoid activation function to a given input.
-The code defines the cost function, which calculates the logistic regression cost function with an additional regularization term.
-The code defines the gradient function, which calculates the gradient of the cost function with respect to the model parameters.
-The code defines the gradient_descent function, which performs gradient descent optimization to update the model parameters iteratively.
-The code defines the one_vs_all function, which trains multiple logistic regression models using one-vs-all strategy. It iteratively trains a logistic regression model for each class, assigning that class as positive and the rest as negative.
-The code loads the input data from CSV files and shuffles the data randomly.
-The code splits the data into training and test sets based on the specified test size.
-The code converts the data into NumPy arrays and initializes the model parameters.
-The code trains the logistic regression models using the one_vs_all function.
-The code uses the trained models to make predictions on the training and test sets.
-The code calculates the accuracy of the model on the training and test sets.
-The code calculates the confusion matrix for the training and test sets.
-The code plots the confusion matrices using the seaborn library.
-Overall, the code performs logistic regression with one-vs-all classification and evaluates the model's performance using accuracy and confusion matrices.
-"""
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -75,8 +49,8 @@ def one_vs_all(X, y, num_labels, learning_rate, num_iters):
         all_theta[i-1 , :] = theta_opt.T
     return all_theta
 
-y_path = 'C:\\Users\\Saeed\\Desktop\\deap learing and mchine learning\\all_about_machine_and_deep_learning\\ex2\\ex2_y_data.csv'
-x_path = 'C:\\Users\\Saeed\\Desktop\\deap learing and mchine learning\\all_about_machine_and_deep_learning\\ex2\\ex2_x_data.csv'
+y_path = 'yourpath\\ex2_y_data.csv'
+x_path = 'yourpath\\ex2_x_data.csv'
 
 x_data = pd.read_csv(x_path, names=None, header=None)
 y_data = pd.read_csv(y_path, names=None, header=None)
@@ -157,34 +131,3 @@ plt.title("Confusion Matrix - Testing Set")
 plt.xlabel("Predicted with Test accuracy = {}%".format(accuracy_test * 100))
 plt.ylabel("True")
 plt.show()
- 
-"""
-Based on the provided code and the confusion matrices, here are the interesting conclusions:
-The code performs multi-class classification using logistic regression and evaluates the model's performance using a confusion matrix.
-
-Training Set Confusion Matrix:
-The model achieved a training accuracy of approximately 80.65%.
-Classes 3 and 2,3,4,5,6,9 have a relatively high number of correct predictions, indicating good performance on these classes.
-Classes 0 and 8,7 ,1have a higher number of misclassifications, suggesting difficulties in distinguishing these classes.
-
-Testing Set Confusion Matrix:
-The model achieved a testing accuracy of approximately 70.15%.
-The model performs slightly worse on the testing set compared to the training set, which is expected.
-Classes 1 and 2,3,9 have a significant number of correct predictions, indicating good performance on these classes.
-Classes 0 and 8,7 continue to pose challenges with a higher number of misclassifications.
-Overall, the model demonstrates decent performance on certain classes while struggling with others. The accuracy scores indicate a moderate level of success in classifying instances. It is important to investigate further to understand the reasons behind the misclassifications and explore strategies to improve the model's performance, especially for classes 5 and 9. Additionally, addressing class imbalances and considering alternative modeling approaches may help enhance the accuracy and overall effectiveness of the classifier.
-
-Based on the results and observations from the code, here are some interesting conclusions:
-Model Performance: The logistic regression model achieved an overall accuracy of around 70% on the test set. While this accuracy is moderate, it suggests that the model has some predictive power in distinguishing between different classes. However, there is still room for improvement, as the model's performance could be further enhanced.
-Overfitting: There is a noticeable drop in accuracy between the training set (80.65%) and the test set (70.15%). This suggests that the model might be overfitting to the training data, failing to generalize well to unseen data. Addressing overfitting by incorporating regularization techniques or increasing the training data could potentially improve the model's performance on the test set.
-Potential for Feature Engineering: The code does not explicitly show any feature engineering techniques being applied. However, feature engineering can be a powerful way to enhance the performance of machine learning models. Exploring the dataset and engineering informative features could lead to better discrimination between different classes and potentially improve accuracy.
-Hyperparameter Tuning: The code uses a learning rate of 1 and 800 iterations for gradient descent. Hyperparameter tuning, including adjusting the learning rate and the number of iterations, can significantly impact the model's performance. Experimenting with different hyperparameter values could potentially result in better accuracy on both the training and test sets.
-Confusion Matrices: The confusion matrices provide valuable insights into the model's performance for each class. Analyzing the confusion matrices can help identify which classes are being misclassified more frequently and provide guidance on areas for improvement. By focusing on the most commonly misclassified classes, targeted efforts can be made to enhance the model's accuracy for those specific classes.
-Multi-Class Classification: The code implements a one-vs-all approach for multi-class classification. This approach allows the logistic regression model to classify instances into multiple classes by training multiple binary classifiers. The highest predicted probability among the classes is then assigned as the predicted class. This technique can be effective for multi-class problems and provides a flexible framework for handling multiple classes.
-
-
-
-
-
-
-"""
